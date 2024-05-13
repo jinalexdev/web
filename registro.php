@@ -2,6 +2,7 @@
 require_once __DIR__ . '/modelos/usuario.php';
 require_once __DIR__ . '/lib/funciones.php';
 require_once __DIR__ . '/lib/funciones.php';
+
 session_start();
 
 $tituloPagina = "Registro";

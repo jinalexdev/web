@@ -24,13 +24,15 @@ if (isset($_GET['pag'])) {
 }
 $empleado = new Empleado();
 $empleados = empleado::listadoempleados($pag);
+$numlistados = Empleado::cuenta();
+$numPaginas = ceil($numlistados / TAM_PAGINA);
 include __DIR__ . '/include/cabeceranav.php';
 ?>
 <link rel="stylesheet" href="css/empleado.css">
 <h1> Tabla de empleados </h1>
 
 <hr></hr>
-<a href="nuevoempleado.php?id" class="btn btn-sm btn-success">
+<a href="nuevoempleado.php" class="btn btn-sm btn-success">
 <i class="bi bi-person-add"></i>        Nuevo </a>
 <br>
 <table class="table  table-striped table-hover table-bordered ">
@@ -101,7 +103,28 @@ include __DIR__ . '/include/cabeceranav.php';
     </tbody>
     </thead>
 </table>
+<nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item <?php if ($pag == 1) echo "disabled"; ?> ">
+            <a class="page-link" href="empleados.php?pag=<?= $pag - 1 ?> ">&lt;&lt;</a>
+        </li>
+
+        <?php for ($i = 1; $i <= $numPaginas; $i++) : ?>
+        <li class="page-item <?php if ($pag == $i)  echo "active" ?>">
+            <a class="page-link" href="empleados.php?pag=<?= $i ?>"><?= $i ?></a>
+            </a>
+        </li>
+        <?php endfor; ?>
+
+        <li class="page-item">
+            <!-- aquí uso operador ternario en lugar de if -->
+            <a class="page-link <?= ($pag == $numPaginas) ? "disabled" : "" ?> "
+                href="empleados.php?pag=<?= $pag + 1 ?>">&gt;&gt;</a>
+        </li>
+    </ul>
+</nav>
+
 <script src="/proyecto_avion/include/cambiardatos.js"></script> <script>
     validarContrasena(); // Llamar a la función para que se ejecute al cargar la página
   </script>
-<?php include __DIR__ . '/include/pie.php'; ?>
+<?php include __DIR__ . '/include/piesinfooter.php'; ?>

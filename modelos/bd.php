@@ -1,12 +1,12 @@
 <?php
-const TAM_PAGINA = 3;
+const TAM_PAGINA = 5;
 
 function abrirBD()
 {
     $bd = new mysqli(
         "localhost",   // Servidor
         "root",   // Usuario
-        "",     // Contraseña
+        "root",     // Contraseña
         "proyecto_aviones"
     ); // Esquema
     if ($bd->connect_errno) {
