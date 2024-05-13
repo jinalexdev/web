@@ -54,8 +54,7 @@
 <!-- Versión bundle de Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4977644154150810"
-     crossorigin="anonymous"></script>
+
 
 
 </html>

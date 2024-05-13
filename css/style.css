@@ -3,14 +3,17 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 body {
+  background-color: rgba(0, 0, 0, 5);
     background-image: url("/proyecto-aviones/imagenes/avion_fondo.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     font-family: arial;
     font-weight: bold;
-
+    background-color: transparent;
+   
 }
+
 hr {
     height: 5px;
     background-color: black;

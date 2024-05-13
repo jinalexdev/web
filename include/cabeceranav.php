@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md fixed-top   navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md fixed-top   navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Contactos</a>
+            <a class="navbar-brand" href="index.php">Aviones</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu1">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,22 +24,26 @@
 
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="<?= $link_active ?>" href="index.php">Mis Contactos</a>
+
+                        <a class="<?= $link_active ?>" href="socios.php">Ser Socio</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="<?= $link_active2 ?>" href="nuevocontacto.php">Nuevo</a>
-                    </li>
+                    <?php if ($usuario->Admin === 1) : ?>
+                        <li class="nav-item">
+                            <a class="<?= $link_active2 ?>" href="nuevocontacto.php">Empleados</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
-                <ul class="navbar-nav bg-primary">
-                    <li class="nav-item dropdown bg-primary">
+                <ul class="navbar-nav bg-dark">
+                    <li class="nav-item dropdown bg-dark">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown">
 
                             <?= $usuario->Nombre ?>
 
                         </a>
+
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="Micuenta.php?id=<?= $usuario->idUsuario ?>">Mi
-                                    Cuenta</a>
+
+                            <li> <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal2" href="#">Cambiar datos</a>
                             </li>
                             <li><a class=" dropdown-item" href="logout.php">Cerrar sesion</a></li>
 
@@ -51,11 +55,64 @@
             </div>
         </div>
     </nav>
+    <form action="cambiardatosusuario.php" method="POST" id="formcambiarusuario">
+        <div class="modal fade" id="modal2" data-bs-backdrop="static" data-bs-theme="light">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h1 class="modal.tittle">Cambiar Datos</h1>
+                        </br>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+
+                            <label class="form-label" for="text">
+                                Cambiar Nombre
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person-circle"></i>
+                                    </span>
 
 
 
-    
+                                </div>
+                                <input type="text" class="form-control" placeholder="Escribe el nombre" name="usuario">
+                            </div>
 
-    </nav>
- 
-    <div class="container">
+                        </div>
+                        <div class="mb-3">
+
+                            <label class="form-label" for="text">
+                                Cambiar Contraseña
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-key"></i>
+                                    </span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Escribe la contraseña" name="contraseña" id="contraseña">
+                            </div>
+
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" id="boton">Modificar</button>
+                        </div>
+    </form>
+
+
+    </div>
+
+
+
+    </div>
+    </div>
+    </div>
+    <div class="container" style="margin-top: 100px;">

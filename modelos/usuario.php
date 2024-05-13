@@ -61,17 +61,16 @@ class Usuario
     public  function Actualizarusuario()
     {
         $bd = abrirBD();
-        $st = $bd->prepare("UPDATE usuarios set nombre=? ,login=?,pwd=? WHERE idUsuario=?");
+        $st = $bd->prepare("UPDATE usuarios set nombre=? ,Contrasena=? WHERE idUsuario=?");
         if ($st === FALSE) {
             die($bd->error);
         }
-        $st->bind_param("sssi", $this->nombre, $this->login, $this->pwd, $this->idUsuario);
+        $st->bind_param("ssi", $this->Nombre,  $this->Contrasena, $this->idUsuario);
         $ok = $st->execute();
         if ($ok === FALSE) {
             die($bd->error);
         }
-        $res = $st->get_result();
-        // hace el objeto contacto directamente 
+       
         $st->close();
         $bd->close();
     }
