@@ -1,6 +1,11 @@
 body {
-    background-image:   url("/proyecto-aviones/imagenes/socios_fondo.jpg");
+    background-image:   url("/proyecto_avion/imagenes/socios_fondo.jpg");
     background-size: cover;
     background-repeat: no-repeat;
      
+  }
+  .list-group-item:hover {
+    /* Propiedades que se aplicarán al pasar el mouse */
+    background-color: rgb(208, 250, 243);  /* Color de fondo al pasar el mouse (gris claro) */
+    cursor: default;        /* Cambia el cursor a mano para indicar interactividad */
   }

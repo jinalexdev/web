@@ -4,7 +4,7 @@
 
 body {
   background-color: rgba(0, 0, 0, 5);
-    background-image: url("/proyecto-aviones/imagenes/avion_fondo.jpg");
+    background-image: url("/proyecto_avion/imagenes/avion_fondo.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;

@@ -29,7 +29,7 @@
                     </li>
                     <?php if ($usuario->Admin === 1) : ?>
                         <li class="nav-item">
-                            <a class="<?= $link_active2 ?>" href="nuevocontacto.php">Empleados</a>
+                            <a class="<?= $link_active2 ?>" href="empleados.php">Empleados</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -115,4 +115,4 @@
     </div>
     </div>
     </div>
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 50px;">
