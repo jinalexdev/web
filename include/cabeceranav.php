@@ -9,7 +9,7 @@
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-
+  
     <title><?= $tituloPagina ?></title>
 </head>
 
@@ -33,6 +33,7 @@
                         </li>
                     <?php endif; ?>
                 </ul>
+              
                 <ul class="navbar-nav bg-dark">
                     <li class="nav-item dropdown bg-dark">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown">
@@ -46,7 +47,7 @@
                             <li> <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal2" href="#">Cambiar datos</a>
                             </li>
                             <li><a class=" dropdown-item" href="logout.php">Cerrar sesion</a></li>
-
+                            <li><a class=" dropdown-item" href="InformacionUsuario.php">Informacion Usuario</a></li>
                         </ul>
                     </li>
                 </ul>

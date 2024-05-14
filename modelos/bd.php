@@ -6,7 +6,7 @@ function abrirBD()
     $bd = new mysqli(
         "localhost",   // Servidor
         "root",   // Usuario
-        "root",     // Contraseña
+        "",     // Contraseña
         "proyecto_aviones"
     ); // Esquema
     if ($bd->connect_errno) {

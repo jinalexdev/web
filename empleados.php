@@ -10,7 +10,8 @@ $link_active2 = "nav-link active";
 if (isset($_SESSION['usuario'])) {
     $usuario = $_SESSION['usuario'];
     if($usuario -> Admin !== 1){
-        die();
+        http_response_code(403);
+        die("Forbidden");
     }
 } else {
     $usuario = null;
@@ -31,14 +32,15 @@ include __DIR__ . '/include/cabeceranav.php';
 <link rel="stylesheet" href="css/empleado.css">
 <h1> Tabla de empleados </h1>
 
-<hr></hr>
+<hr>
+</hr>
 <a href="nuevoempleado.php" class="btn btn-sm btn-success">
-<i class="bi bi-person-add"></i>        Nuevo </a>
+    <i class="bi bi-person-add"></i> Nuevo </a>
 <br>
 <table class="table  table-striped table-hover table-bordered ">
     <thead class="table-primary">
         <tr>
-            <th >Nombre</th>
+            <th>Nombre</th>
             <th>Apellido</th>
             <th>Edad</th>
             <th> Salario </th>
@@ -52,30 +54,30 @@ include __DIR__ . '/include/cabeceranav.php';
 
 
         <?php foreach ($empleados as $empleado) : ?>
-      
+        <tr class="trborrar" data-id="<?= $empleado["idEmpleado"] ?>">
             <br>
-            <td ><?= e($empleado['nombre']) ?></td>
+            <td><?= e($empleado['nombre']) ?></td>
             <td><?=  e($empleado['apellido']) ?></td>
             <td><?= e($empleado['edad']) ?></td>
-            <td> 
-            <?= e($empleado['salario']). "€" ?>
+            <td>
+                <?= e(($empleado['salario'])."€") ?>
             </td>
-            <td> 
-            <?= e($empleado['nombre_Cargo']) ?>
+            <td>
+                <?= e($empleado['nombre_Cargo']) ?>
             </td>
-            <td> 
-            <?= e($empleado['dni']) ?>
+            <td>
+                <?= e($empleado['dni']) ?>
             </td>
-            <td>   <a href="nuevoempleado.php?id=<?= $empleado["idEmpleado"] ?>" class="btn btn-sm btn-primary">
-            <i class="bi bi-pencil-square"></i> Editar </a>
-                   </td>
+            <td> <a href="nuevoempleado.php?id=<?= $empleado["idEmpleado"] ?>" class="btn btn-sm btn-primary">
+                    <i class="bi bi-pencil-square"></i> Editar </a>
+            </td>
             <td> <a href="#" class="btn btn-sm btn-danger " data-bs-toggle="modal"
                     data-bs-target="#modalborrar<?= $empleado["idEmpleado"]   ?>">
-                    <i class="bi bi-trash2"></i>    Borrar
+                    <i class="bi bi-trash2"></i> Borrar
                 </a>
             </td>
         </tr>
-       
+
         <div class="modal fade" data-bs-dismiss="modal" id="modalborrar<?= $empleado["idEmpleado"]  ?>">
             <div class="modal-dialog" data-bs-dismiss="modal">
                 <div class="modal-content">
@@ -84,7 +86,8 @@ include __DIR__ . '/include/cabeceranav.php';
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Seguro que quiere borrar al empleado <strong><?= e($empleado["nombre"]." ". e($empleado["apellido"])) ?></strong>
+                        <p>Seguro que quiere borrar al empleado
+                            <strong><?= e($empleado["nombre"]." ". e($empleado["apellido"])) ?></strong>
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -99,7 +102,7 @@ include __DIR__ . '/include/cabeceranav.php';
             </div>
         </div>
         <?php endforeach; ?>
-       
+
     </tbody>
     </thead>
 </table>
@@ -124,7 +127,36 @@ include __DIR__ . '/include/cabeceranav.php';
     </ul>
 </nav>
 
-<script src="/proyecto_avion/include/cambiardatos.js"></script> <script>
+<script src="/proyecto_avion/include/cambiardatos.js"></script>
+<script src="/proyecto_avion/js/cambiardatos.js"></script> <script>
     validarContrasena(); // Llamar a la función para que se ejecute al cargar la página
   </script>
+<script>
+let btn_borrar = document.querySelectorAll(".btnborrar");
+btn_borrar.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        let idEmpleado = btn.dataset.id;
+        let formData = new FormData();
+        formData.append("idempleado", idEmpleado);
+        fetch('borrarEmpleado.php', {
+                method: 'POST',
+                body: formData
+            })
+         
+            .then(res => {
+
+                if (res.ok) {
+
+                    const tr = document.querySelector('.trborrar');
+                    const modalborrar = document.querySelector(".modal-dialog");
+                    modalborrar.remove();
+                    tr.remove();
+
+                }
+              
+            });
+
+    });
+});
+</script>
 <?php include __DIR__ . '/include/piesinfooter.php'; ?>

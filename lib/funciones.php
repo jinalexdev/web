@@ -48,4 +48,11 @@ function formatearFechaHoraLarga($fechaISO) { // 2023-10-26 14:50:30
         return IntlDateFormatter::formatObject($dt,
             "d MMMM yyyy, HH:mm", "es-ES");
     }
-}
+ 
+    }
+    function formateradecimal($num){
+        $formatted_number = number_format($num, 2, ",", ".");
+
+        // Return the formatted number
+        return $formatted_number;
+      }

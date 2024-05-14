@@ -23,8 +23,10 @@ include __DIR__ . '/include/cabeceranav.php';
 
 <?php include __DIR__ . '/include/pie.php'; ?>
 
-<script src="/proyecto_avion/include/cambiardatos.js"></script> <script>
+<script src="/proyecto_avion/js/cambiardatos.js"></script> <script>
     validarContrasena(); // Llamar a la función para que se ejecute al cargar la página
   </script>
+  </script>
+
 
 

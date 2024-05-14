@@ -7,7 +7,10 @@ $dniRegex = "/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i";
 if (isset($_SESSION['usuario'])) {
     $usuario = $_SESSION['usuario'];
     if($usuario -> Admin !== 1){
-        die();
+        if($usuario -> Admin !== 1){
+            http_response_code(403);
+            die("Forbidden");
+        }
     }
 } else {
     $usuario = null;

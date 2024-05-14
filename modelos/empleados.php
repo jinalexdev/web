@@ -157,7 +157,7 @@ class empleado
     {
         $bd = abrirBD();
         $st = $bd->prepare("SELECT * FROM empleados
-                WHERE dni=?");
+                WHERE idEmpleado=?");
         if ($st === FALSE) {
             die("Error SQL: " . $bd->error);
         }
@@ -173,4 +173,25 @@ class empleado
         $bd->close();
         return $empleado ;
     }
+
+    public static function borrarEmpleado($id)
+    {
+        $bd = abrirBD();
+
+        $st = $bd->prepare("DELETE from empleados WHERE idEmpleado=?");
+        if ($st === FALSE) {
+            die($bd->error);
+        }
+
+        $st->bind_param("i", $id);
+
+        $res = $st->execute();
+        if ($res === FALSE) {
+            die($bd->error);
+        }
+
+        $st->close();
+        $bd->close();
+    }
+   
 }
