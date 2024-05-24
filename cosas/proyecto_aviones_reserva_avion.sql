@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `proyecto_aviones` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `proyecto_aviones`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: proyecto_aviones
@@ -23,18 +25,22 @@ DROP TABLE IF EXISTS `reserva_avion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reserva_avion` (
-  `idReserva` int(11) NOT NULL,
+  `idReserva` int(11) NOT NULL AUTO_INCREMENT,
   `id_Avion` int(11) DEFAULT NULL,
   `idUsuario` int(11) DEFAULT NULL,
-  `idsocio` int(11) DEFAULT NULL,
+  `Precio_Total` decimal(8,2) DEFAULT NULL,
+  `id_Asiento` int(11) DEFAULT NULL,
+  `id_Vuelo` int(11) DEFAULT NULL,
   PRIMARY KEY (`idReserva`),
   KEY `id_Avion` (`id_Avion`),
   KEY `idUsuario` (`idUsuario`),
-  KEY `idsocio` (`idsocio`),
+  KEY `id_Vuelo` (`id_Vuelo`),
+  KEY `reserva_avion_ibfk_3` (`id_Asiento`),
   CONSTRAINT `reserva_avion_ibfk_1` FOREIGN KEY (`id_Avion`) REFERENCES `aviones` (`id_Avion`),
   CONSTRAINT `reserva_avion_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`),
-  CONSTRAINT `reserva_avion_ibfk_3` FOREIGN KEY (`idsocio`) REFERENCES `socios` (`idsocio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='		';
+  CONSTRAINT `reserva_avion_ibfk_3` FOREIGN KEY (`id_Asiento`) REFERENCES `asientos` (`id_Asiento`) ON DELETE CASCADE,
+  CONSTRAINT `reserva_avion_ibfk_4` FOREIGN KEY (`id_Vuelo`) REFERENCES `vuelos` (`id_Vuelo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-17 14:25:30
+-- Dump completed on 2024-05-24  7:47:09

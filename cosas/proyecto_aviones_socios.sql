@@ -1,8 +1,10 @@
+CREATE DATABASE  IF NOT EXISTS `proyecto_aviones` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `proyecto_aviones`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: proyecto_aviones
 -- ------------------------------------------------------
--- Server version	8.0.36
+-- Server version	5.5.5-10.4.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,16 +25,16 @@ DROP TABLE IF EXISTS `socios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `socios` (
-  `idsocio` int NOT NULL AUTO_INCREMENT,
-  `idUsuario` int DEFAULT NULL,
-  `suscripcion` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `descuento` int DEFAULT NULL,
+  `idsocio` int(11) NOT NULL AUTO_INCREMENT,
+  `suscripcion` varchar(100) DEFAULT NULL,
+  `descuento` int(11) DEFAULT NULL,
   `precio` decimal(8,2) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   `fechaSuscripcion` date DEFAULT NULL,
   PRIMARY KEY (`idsocio`),
   KEY `idUsuario_idx` (`idUsuario`),
   CONSTRAINT `idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
-INSERT INTO `socios` VALUES (197,15,'bronce',5,5.99,'2024-05-18');
+INSERT INTO `socios` VALUES (183,'bronce',5,5.99,14,'2024-05-20');
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-20  7:52:10
+-- Dump completed on 2024-05-24  7:47:09
